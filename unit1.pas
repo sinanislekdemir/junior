@@ -66,6 +66,7 @@ begin
   begin
     Timer1.Enabled := False;
     MessageDlg('Take a break now!', 'Take a break now!', mtInformation, [mbOK], '');
+    seconds := 60 * 25;
   end;
   s_minutes := IntToStr(floor(seconds / 60));
   s_seconds := IntToStr(seconds mod 60);
