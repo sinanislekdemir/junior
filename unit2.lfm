@@ -9,6 +9,7 @@ object Form2: TForm2
   Menu = MainMenu1
   OnClose = FormClose
   OnShow = FormShow
+  Position = poWorkAreaCenter
   LCLVersion = '2.0.10.0'
   object CheckListBox1: TCheckListBox
     Left = 0

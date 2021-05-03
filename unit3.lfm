@@ -8,6 +8,7 @@ object CodeSnippets: TCodeSnippets
   ClientWidth = 1305
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  Position = poWorkAreaCenter
   LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
