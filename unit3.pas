@@ -10,19 +10,24 @@ uses
   SynHighlighterPerl, SynHighlighterHTML, SynHighlighterXML, SynHighlighterDiff,
   synhighlighterunixshellscript, SynHighlighterCss, SynHighlighterPHP,
   SynHighlighterSQL, SynHighlighterTeX, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, PairSplitter, ComCtrls, StdCtrls, dateutils;
+  ExtCtrls, PairSplitter, ComCtrls, StdCtrls, ActnList, dateutils;
 
 type
 
   { TCodeSnippets }
 
   TCodeSnippets = class(TForm)
-    Button1: TButton;
+    Action1: TAction;
+    Action2: TAction;
+    ActionList1: TActionList;
+    Status: TLabel;
+    SaveButton: TButton;
+    ResetButton: TButton;
     Panel4: TPanel;
     Search: TEdit;
     SynSQLSyn1: TSynSQLSyn;
     SyntaxBox: TComboBox;
-    Edit1: TEdit;
+    SnippetName: TEdit;
     CodeList: TListBox;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -42,10 +47,16 @@ type
     SynTeXSyn1: TSynTeXSyn;
     SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn;
     SynXMLSyn1: TSynXMLSyn;
-    procedure Button1Click(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
+    procedure Action2Execute(Sender: TObject);
+    procedure CodeEditorChange(Sender: TObject);
+    procedure SaveButtonClick(Sender: TObject);
+    procedure ResetButtonClick(Sender: TObject);
     procedure CodeListClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure SearchEnter(Sender: TObject);
+    procedure SearchKeyPress(Sender: TObject; var Key: char);
     procedure SyntaxBoxChange(Sender: TObject);
     procedure RefreshCodeList();
     procedure LoadCodeList(var filename: string);
@@ -58,6 +69,7 @@ type
 
 var
   CodeSnippets: TCodeSnippets;
+  indexFilename: string;
 
 implementation
 
@@ -114,6 +126,7 @@ var
   parts: TStringArray;
   i: integer;
 begin
+  CodeList.Items.Clear;
   findex := TStringList.Create;
   findex.LoadFromFile(filename);
   for i := 0 to findex.Count - 1 do
@@ -127,14 +140,14 @@ end;
 procedure TCodeSnippets.FormCreate(Sender: TObject);
 var
   dir: string;
-  fname: string;
 begin
+  indexFilename := GetUserDir() + '/.coder-toolbox/index.txt';
   dir := GetUserDir + '/.coder-toolbox';
   if not DirectoryExists(dir) then
     CreateDir(dir);
-  fname := dir + '/index.txt';
-  if FileExists(fname) then
-    LoadCodeList(fname);
+
+  if FileExists(indexFilename) then
+    LoadCodeList(indexFilename);
 end;
 
 procedure TCodeSnippets.CodeListClick(Sender: TObject);
@@ -144,9 +157,9 @@ var
   parts: TStringArray;
 begin
   findex := TStringList.Create;
-  if not FileExists(GetUserDir + '/.coder-toolbox/index.txt') then
-    findex.SaveToFile(GetUserDir + '/.coder-toolbox/index.txt');
-  findex.LoadFromFile(GetUserDir + '/.coder-toolbox/index.txt');
+  if not FileExists(indexFilename) then
+    findex.SaveToFile(indexFilename);
+  findex.LoadFromFile(indexFilename);
   for i := 0 to findex.Count - 1 do
   begin
     parts := findex[i].Split('|');
@@ -154,13 +167,13 @@ begin
     begin
       CodeEditor.Lines.LoadFromFile(parts[2]);
       SyntaxChange(parts[0]);
-      Edit1.Text := parts[1];
+      SnippetName.Text := parts[1];
     end;
   end;
   findex.Free;
 end;
 
-procedure TCodeSnippets.Button1Click(Sender: TObject);
+procedure TCodeSnippets.SaveButtonClick(Sender: TObject);
 var
   findex: TStringList;
   i: integer;
@@ -169,13 +182,13 @@ var
 begin
   findex := TStringList.Create;
 
-  if not FileExists(GetUserDir + '/.coder-toolbox/index.txt') then
-    findex.SaveToFile(GetUserDir + '/.coder-toolbox/index.txt');
-  findex.LoadFromFile(GetUserDir + '/.coder-toolbox/index.txt');
+  if not FileExists(indexFilename) then
+    findex.SaveToFile(indexFilename);
+  findex.LoadFromFile(indexFilename);
   for i := 0 to findex.Count - 1 do
   begin
     parts := findex[i].Split('|');
-    if parts[1] = Edit1.Text then
+    if parts[1] = SnippetName.Text then
     begin
       parts[0] := SyntaxBox.Caption;
       CodeEditor.Lines.SaveToFile(parts[2]);
@@ -183,15 +196,65 @@ begin
     end;
   end;
   fname := GetUserDir + './.coder-toolbox/' + IntToStr(DateTimeToUnix(Now()));
-  findex.Add(SyntaxBox.Caption + '|' + Edit1.Text + '|' + fname);
+  findex.Add(SyntaxBox.Caption + '|' + SnippetName.Text + '|' + fname);
   CodeEditor.Lines.SaveToFile(fname);
-  findex.SaveToFile(GetUserDir + '/.coder-toolbox/index.txt');
+  findex.SaveToFile(indexFilename);
   findex.Free;
+  LoadCodeList(fname);
+  fname := indexFilename;
+  LoadCodeList(fname);
+  Status.Caption := 'Saved...';
+end;
+
+procedure TCodeSnippets.Action1Execute(Sender: TObject);
+begin
+  ResetButton.Click;
+end;
+
+procedure TCodeSnippets.Action2Execute(Sender: TObject);
+begin
+  SaveButton.Click;
+end;
+
+procedure TCodeSnippets.CodeEditorChange(Sender: TObject);
+begin
+  Status.Caption := ':';
+end;
+
+procedure TCodeSnippets.ResetButtonClick(Sender: TObject);
+begin
+  SnippetName.Text := '';
+  SnippetName.SetFocus;
+  CodeEditor.Lines.Clear;
+  Status.Caption := 'New...';
 end;
 
 procedure TCodeSnippets.FormDestroy(Sender: TObject);
 begin
 
+end;
+
+procedure TCodeSnippets.SearchEnter(Sender: TObject);
+begin
+  Search.Text:='';
+end;
+
+procedure TCodeSnippets.SearchKeyPress(Sender: TObject; var Key: char);
+var
+  i: integer;
+begin
+  if Length(Search.Text) = 0 then
+  begin
+    LoadCodeList(indexFilename);
+    exit;
+  end;
+  for i := CodeList.Items.Count - 1 downto 0 do
+  begin
+    if Pos(Search.Text, CodeList.Items[i]) = 0 then
+    begin
+      CodeList.Items.Delete(i);
+    end;
+  end;
 end;
 
 procedure TCodeSnippets.RefreshCodeList();
@@ -203,4 +266,3 @@ begin
 end;
 
 end.
-

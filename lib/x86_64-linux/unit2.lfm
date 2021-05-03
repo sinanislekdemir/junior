@@ -1,18 +1,18 @@
 object Form2: TForm2
-  Left = 832
+  Left = 3085
   Height = 753
-  Top = 248
+  Top = 455
   Width = 723
   Caption = 'TODO List'
-  ClientHeight = 726
+  ClientHeight = 728
   ClientWidth = 723
   Menu = MainMenu1
   OnClose = FormClose
   OnShow = FormShow
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '2.0.10.0'
   object CheckListBox1: TCheckListBox
     Left = 0
-    Height = 636
+    Height = 638
     Top = 0
     Width = 723
     Align = alClient
@@ -23,7 +23,7 @@ object Form2: TForm2
   object Panel1: TPanel
     Left = 0
     Height = 90
-    Top = 636
+    Top = 638
     Width = 723
     Align = alBottom
     ClientHeight = 90
@@ -31,7 +31,7 @@ object Form2: TForm2
     TabOrder = 1
     object Edit1: TEdit
       Left = 1
-      Height = 39
+      Height = 33
       Top = 1
       Width = 721
       Align = alTop
@@ -50,8 +50,8 @@ object Form2: TForm2
     end
   end
   object MainMenu1: TMainMenu
-    left = 359
-    top = 173
+    Left = 359
+    Top = 173
     object MenuItem1: TMenuItem
       Caption = 'List Operations'
       object MenuItem2: TMenuItem
@@ -73,12 +73,12 @@ object Form2: TForm2
   end
   object OpenDialog1: TOpenDialog
     Filter = 'List files|*.list'
-    left = 142
-    top = 201
+    Left = 142
+    Top = 201
   end
   object SaveDialog1: TSaveDialog
     Filter = 'List Files|*.list'
-    left = 268
-    top = 220
+    Left = 268
+    Top = 220
   end
 end

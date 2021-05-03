@@ -1,14 +1,14 @@
 object CodeSnippets: TCodeSnippets
-  Left = 490
+  Left = 2937
   Height = 911
-  Top = 254
+  Top = 160
   Width = 1305
   Caption = 'Code Snippets'
   ClientHeight = 911
   ClientWidth = 1305
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 911
@@ -20,8 +20,8 @@ object CodeSnippets: TCodeSnippets
     TabOrder = 0
     object CodeList: TListBox
       Left = 1
-      Height = 870
-      Top = 40
+      Height = 876
+      Top = 34
       Width = 225
       Align = alClient
       ItemHeight = 0
@@ -32,10 +32,12 @@ object CodeSnippets: TCodeSnippets
     end
     object Search: TEdit
       Left = 1
-      Height = 39
+      Height = 33
       Top = 1
       Width = 225
       Align = alTop
+      OnEnter = SearchEnter
+      OnKeyPress = SearchKeyPress
       TabOrder = 1
       Text = 'Search'
     end
@@ -65,9 +67,9 @@ object CodeSnippets: TCodeSnippets
       ClientHeight = 58
       ClientWidth = 1071
       TabOrder = 0
-      object Edit1: TEdit
+      object SnippetName: TEdit
         Left = 10
-        Height = 39
+        Height = 33
         Top = 8
         Width = 430
         TabOrder = 0
@@ -75,7 +77,7 @@ object CodeSnippets: TCodeSnippets
       end
       object SyntaxBox: TComboBox
         Left = 448
-        Height = 35
+        Height = 33
         Top = 8
         Width = 204
         ItemHeight = 0
@@ -99,6 +101,15 @@ object CodeSnippets: TCodeSnippets
         OnChange = SyntaxBoxChange
         TabOrder = 1
         Text = 'Python'
+      end
+      object ResetButton: TButton
+        Left = 656
+        Height = 33
+        Top = 8
+        Width = 88
+        Caption = 'Reset / New'
+        OnClick = ResetButtonClick
+        TabOrder = 2
       end
     end
     inline CodeEditor: TSynEdit
@@ -567,6 +578,7 @@ object CodeSnippets: TCodeSnippets
       MouseLinkColor.Foreground = clBlue
       LineHighlightColor.Background = clNone
       LineHighlightColor.Foreground = clNone
+      OnChange = CodeEditorChange
       inline SynLeftGutterPartList1: TSynGutterPartList
         object SynGutterMarks1: TSynGutterMarks
           Width = 24
@@ -613,101 +625,123 @@ object CodeSnippets: TCodeSnippets
       ClientHeight = 42
       ClientWidth = 1071
       TabOrder = 2
-      object Button1: TButton
+      object SaveButton: TButton
         Left = 995
         Height = 40
         Top = 1
         Width = 75
         Align = alRight
         Caption = 'Save'
-        OnClick = Button1Click
+        OnClick = SaveButtonClick
         TabOrder = 0
+      end
+      object Status: TLabel
+        Left = 13
+        Height = 15
+        Top = 12
+        Width = 3
+        Caption = ':'
+        ParentColor = False
       end
     end
   end
   object SynPythonSyn1: TSynPythonSyn
     DefaultFilter = 'Python Files (*.py)|*.py'
     Enabled = False
-    left = 920
-    top = 16
+    Left = 920
+    Top = 16
   end
   object SynPasSyn1: TSynPasSyn
     Enabled = False
     CompilerMode = pcmDelphi
     NestedComments = False
-    left = 1057
-    top = 232
+    Left = 1057
+    Top = 232
   end
   object SynCppSyn1: TSynCppSyn
     DefaultFilter = 'C++ Files (*.c,*.cpp,*.h,*.hpp,*.hh)|*.c;*.cpp;*.h;*.hpp;*.hh'
     Enabled = False
-    left = 511
-    top = 198
+    Left = 511
+    Top = 198
   end
   object SynJavaSyn1: TSynJavaSyn
     DefaultFilter = 'Java Files (*.java)|*.java'
     Enabled = False
-    left = 763
-    top = 277
+    Left = 763
+    Top = 277
   end
   object SynJScriptSyn1: TSynJScriptSyn
     Enabled = False
-    left = 556
-    top = 409
+    Left = 556
+    Top = 409
   end
   object SynPerlSyn1: TSynPerlSyn
     DefaultFilter = 'Perl Files (*.pl,*.pm,*.cgi)|*.pl;*.pm;*.cgi'
     Enabled = False
-    left = 485
-    top = 339
+    Left = 485
+    Top = 339
   end
   object SynHTMLSyn1: TSynHTMLSyn
     DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
     Enabled = False
-    left = 718
-    top = 151
+    Left = 718
+    Top = 151
   end
   object SynXMLSyn1: TSynXMLSyn
     DefaultFilter = 'XML Document (*.xml,*.xsd,*.xsl,*.xslt,*.dtd)|*.xml;*.xsd;*.xsl;*.xslt;*.dtd'
     Enabled = False
     WantBracesParsed = False
-    left = 927
-    top = 190
+    Left = 927
+    Top = 190
   end
   object SynDiffSyn1: TSynDiffSyn
     Enabled = False
-    left = 956
-    top = 375
+    Left = 956
+    Top = 375
   end
   object SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn
     DefaultFilter = 'UNIX Shell Scripts (*.sh)|*.sh'
     Enabled = False
-    left = 724
-    top = 421
+    Left = 724
+    Top = 421
   end
   object SynCssSyn1: TSynCssSyn
     DefaultFilter = 'Cascading Stylesheets (*.css)|*.css'
     Enabled = False
-    left = 372
-    top = 247
+    Left = 372
+    Top = 247
   end
   object SynPHPSyn1: TSynPHPSyn
     DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
     Enabled = False
-    left = 358
-    top = 141
+    Left = 358
+    Top = 141
   end
   object SynSQLSyn1: TSynSQLSyn
     DefaultFilter = 'SQL Files (*.sql)|*.sql'
     Enabled = False
     SQLDialect = sqlSybase
-    left = 397
-    top = 466
+    Left = 397
+    Top = 466
   end
   object SynTeXSyn1: TSynTeXSyn
     DefaultFilter = 'TeX Files (*.tex)|*.tex'
     Enabled = False
-    left = 459
-    top = 551
+    Left = 459
+    Top = 551
+  end
+  object ActionList1: TActionList
+    Left = 385
+    Top = 385
+    object Action1: TAction
+      Caption = 'Action1'
+      OnExecute = Action1Execute
+      ShortCut = 16462
+    end
+    object Action2: TAction
+      Caption = 'Action2'
+      OnExecute = Action2Execute
+      ShortCut = 16467
+    end
   end
 end

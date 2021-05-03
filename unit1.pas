@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm1 }
+  { TMainForm }
 
-  TForm1 = class(TForm)
+  TMainForm = class(TForm)
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
@@ -32,31 +32,31 @@ type
   end;
 
 var
-  Form1: TForm1;
+  MainForm: TMainForm;
   seconds: integer;
 
 implementation
 
 {$R *.lfm}
 
-{ TForm1 }
+{ TMainForm }
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TMainForm.Button3Click(Sender: TObject);
 begin
   CodeSnippets.Show();
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TMainForm.FormCreate(Sender: TObject);
 begin
   seconds := 60 * 25;
 end;
 
-procedure TForm1.FormDblClick(Sender: TObject);
+procedure TMainForm.FormDblClick(Sender: TObject);
 begin
 
 end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);
+procedure TMainForm.Timer1Timer(Sender: TObject);
 var
   s_minutes, s_seconds: string;
 
@@ -72,12 +72,12 @@ begin
   Label1.Caption := s_minutes + ':' + s_seconds;
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TMainForm.Button2Click(Sender: TObject);
 begin
   Form2.Show;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TMainForm.Button1Click(Sender: TObject);
 begin
   if Timer1.Enabled then
   begin
