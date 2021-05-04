@@ -16,6 +16,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    minutes: TEdit;
     GroupBox1: TGroupBox;
     Label1: TLabel;
     Timer1: TTimer;
@@ -24,6 +25,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDblClick(Sender: TObject);
+    procedure minutesChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
 
@@ -56,6 +58,19 @@ begin
 
 end;
 
+procedure TMainForm.minutesChange(Sender: TObject);
+var
+  s_minutes, s_seconds: string;
+begin
+  if minutes.Text = '' then exit;
+  seconds := 60 * StrToInt(minutes.Text);
+  s_minutes := IntToStr(floor(seconds / 60));
+  s_seconds := IntToStr(seconds mod 60);
+  if (seconds mod 60) < 10 then
+    s_seconds := '0' + s_seconds;
+  Label1.Caption := s_minutes + ':' + s_seconds;
+end;
+
 procedure TMainForm.Timer1Timer(Sender: TObject);
 var
   s_minutes, s_seconds: string;
@@ -66,11 +81,13 @@ begin
   begin
     Timer1.Enabled := False;
     MessageDlg('Take a break now!', 'Take a break now!', mtInformation, [mbOK], '');
-    seconds := 60 * 25;
-    Button1.Caption:='Start';
+    seconds := 60 * StrToInt(minutes.Text);
+    Button1.Caption := 'Start';
   end;
   s_minutes := IntToStr(floor(seconds / 60));
   s_seconds := IntToStr(seconds mod 60);
+  if (seconds mod 60) < 10 then
+    s_seconds := '0' + s_seconds;
   Label1.Caption := s_minutes + ':' + s_seconds;
 end;
 

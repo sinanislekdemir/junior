@@ -1,7 +1,7 @@
 object CodeSnippets: TCodeSnippets
-  Left = 2937
+  Left = 512
   Height = 911
-  Top = 160
+  Top = 221
   Width = 1305
   Caption = 'Code Snippets'
   ClientHeight = 911
@@ -9,7 +9,7 @@ object CodeSnippets: TCodeSnippets
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poWorkAreaCenter
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '1.8.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 911
@@ -21,8 +21,8 @@ object CodeSnippets: TCodeSnippets
     TabOrder = 0
     object CodeList: TListBox
       Left = 1
-      Height = 876
-      Top = 34
+      Height = 870
+      Top = 40
       Width = 225
       Align = alClient
       ItemHeight = 0
@@ -33,7 +33,7 @@ object CodeSnippets: TCodeSnippets
     end
     object Search: TEdit
       Left = 1
-      Height = 33
+      Height = 39
       Top = 1
       Width = 225
       Align = alTop
@@ -70,7 +70,7 @@ object CodeSnippets: TCodeSnippets
       TabOrder = 0
       object SnippetName: TEdit
         Left = 10
-        Height = 33
+        Height = 39
         Top = 8
         Width = 430
         TabOrder = 0
@@ -78,7 +78,7 @@ object CodeSnippets: TCodeSnippets
       end
       object SyntaxBox: TComboBox
         Left = 448
-        Height = 33
+        Height = 35
         Top = 8
         Width = 204
         ItemHeight = 0
@@ -638,9 +638,9 @@ object CodeSnippets: TCodeSnippets
       end
       object Status: TLabel
         Left = 13
-        Height = 15
+        Height = 19
         Top = 12
-        Width = 3
+        Width = 4
         Caption = ':'
         ParentColor = False
       end
@@ -649,91 +649,91 @@ object CodeSnippets: TCodeSnippets
   object SynPythonSyn1: TSynPythonSyn
     DefaultFilter = 'Python Files (*.py)|*.py'
     Enabled = False
-    Left = 920
-    Top = 16
+    left = 920
+    top = 16
   end
   object SynPasSyn1: TSynPasSyn
     Enabled = False
     CompilerMode = pcmDelphi
     NestedComments = False
-    Left = 1057
-    Top = 232
+    left = 1057
+    top = 232
   end
   object SynCppSyn1: TSynCppSyn
     DefaultFilter = 'C++ Files (*.c,*.cpp,*.h,*.hpp,*.hh)|*.c;*.cpp;*.h;*.hpp;*.hh'
     Enabled = False
-    Left = 511
-    Top = 198
+    left = 511
+    top = 198
   end
   object SynJavaSyn1: TSynJavaSyn
     DefaultFilter = 'Java Files (*.java)|*.java'
     Enabled = False
-    Left = 763
-    Top = 277
+    left = 763
+    top = 277
   end
   object SynJScriptSyn1: TSynJScriptSyn
     Enabled = False
-    Left = 556
-    Top = 409
+    left = 556
+    top = 409
   end
   object SynPerlSyn1: TSynPerlSyn
     DefaultFilter = 'Perl Files (*.pl,*.pm,*.cgi)|*.pl;*.pm;*.cgi'
     Enabled = False
-    Left = 485
-    Top = 339
+    left = 485
+    top = 339
   end
   object SynHTMLSyn1: TSynHTMLSyn
     DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
     Enabled = False
-    Left = 718
-    Top = 151
+    left = 718
+    top = 151
   end
   object SynXMLSyn1: TSynXMLSyn
     DefaultFilter = 'XML Document (*.xml,*.xsd,*.xsl,*.xslt,*.dtd)|*.xml;*.xsd;*.xsl;*.xslt;*.dtd'
     Enabled = False
     WantBracesParsed = False
-    Left = 927
-    Top = 190
+    left = 927
+    top = 190
   end
   object SynDiffSyn1: TSynDiffSyn
     Enabled = False
-    Left = 956
-    Top = 375
+    left = 956
+    top = 375
   end
   object SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn
     DefaultFilter = 'UNIX Shell Scripts (*.sh)|*.sh'
     Enabled = False
-    Left = 724
-    Top = 421
+    left = 724
+    top = 421
   end
   object SynCssSyn1: TSynCssSyn
     DefaultFilter = 'Cascading Stylesheets (*.css)|*.css'
     Enabled = False
-    Left = 372
-    Top = 247
+    left = 372
+    top = 247
   end
   object SynPHPSyn1: TSynPHPSyn
     DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
     Enabled = False
-    Left = 358
-    Top = 141
+    left = 358
+    top = 141
   end
   object SynSQLSyn1: TSynSQLSyn
     DefaultFilter = 'SQL Files (*.sql)|*.sql'
     Enabled = False
     SQLDialect = sqlSybase
-    Left = 397
-    Top = 466
+    left = 397
+    top = 466
   end
   object SynTeXSyn1: TSynTeXSyn
     DefaultFilter = 'TeX Files (*.tex)|*.tex'
     Enabled = False
-    Left = 459
-    Top = 551
+    left = 459
+    top = 551
   end
   object ActionList1: TActionList
-    Left = 385
-    Top = 385
+    left = 385
+    top = 385
     object Action1: TAction
       Caption = 'Action1'
       OnExecute = Action1Execute
