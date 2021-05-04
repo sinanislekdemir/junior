@@ -1,12 +1,12 @@
 object MainForm: TMainForm
   Left = 490
-  Height = 321
+  Height = 378
   Top = 221
   Width = 316
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Developers Toolbox'
-  ClientHeight = 321
+  ClientHeight = 378
   ClientWidth = 316
   OnCreate = FormCreate
   OnDblClick = FormDblClick
@@ -70,6 +70,15 @@ object MainForm: TMainForm
     Caption = 'Code Snippets'
     OnClick = Button3Click
     TabOrder = 2
+  end
+  object CheckBox1: TCheckBox
+    Left = 8
+    Height = 32
+    Top = 327
+    Width = 119
+    Caption = 'Always on top'
+    OnChange = CheckBox1Change
+    TabOrder = 3
   end
   object Timer1: TTimer
     Enabled = False

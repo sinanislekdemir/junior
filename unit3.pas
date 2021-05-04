@@ -9,8 +9,9 @@ uses
   SynHighlighterCpp, SynHighlighterJava, SynHighlighterJScript,
   SynHighlighterPerl, SynHighlighterHTML, SynHighlighterXML, SynHighlighterDiff,
   synhighlighterunixshellscript, SynHighlighterCss, SynHighlighterPHP,
-  SynHighlighterSQL, SynHighlighterTeX, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, PairSplitter, ComCtrls, StdCtrls, ActnList, dateutils;
+  SynHighlighterSQL, SynHighlighterTeX, SynHighlighterAny, Forms, Controls,
+  Graphics, Dialogs, ExtCtrls, ComCtrls, StdCtrls, ActnList,
+  Menus, dateutils, sqldb;
 
 type
 
@@ -19,12 +20,16 @@ type
   TCodeSnippets = class(TForm)
     Action1: TAction;
     Action2: TAction;
+    Action3: TAction;
     ActionList1: TActionList;
+    MenuItem1: TMenuItem;
+    PopupMenu1: TPopupMenu;
     Status: TLabel;
     SaveButton: TButton;
     ResetButton: TButton;
     Panel4: TPanel;
     Search: TEdit;
+    SynAnySyn1: TSynAnySyn;
     SynSQLSyn1: TSynSQLSyn;
     SyntaxBox: TComboBox;
     SnippetName: TEdit;
@@ -40,16 +45,16 @@ type
     SynHTMLSyn1: TSynHTMLSyn;
     SynJavaSyn1: TSynJavaSyn;
     SynJScriptSyn1: TSynJScriptSyn;
-    SynPasSyn1: TSynPasSyn;
     SynPerlSyn1: TSynPerlSyn;
     SynPHPSyn1: TSynPHPSyn;
     SynPythonSyn1: TSynPythonSyn;
-    SynTeXSyn1: TSynTeXSyn;
     SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn;
     SynXMLSyn1: TSynXMLSyn;
     procedure Action1Execute(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
+    procedure Action3Execute(Sender: TObject);
     procedure CodeEditorChange(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
     procedure ResetButtonClick(Sender: TObject);
     procedure CodeListClick(Sender: TObject);
@@ -95,18 +100,17 @@ implementation
 procedure TCodeSnippets.SyntaxChange(var syntax: string);
 begin
   case syntax of
+    'Generic/Text': CodeEditor.Highlighter := SynAnySyn1;
     'Python': CodeEditor.Highlighter := SynPythonSyn1;
     'HTML': CodeEditor.Highlighter := SynHTMLSyn1;
     'JavaScript': CodeEditor.Highlighter := SynJScriptSyn1;
     'Java': CodeEditor.Highlighter := SynJavaSyn1;
     'C++': CodeEditor.Highlighter := SynCppSyn1;
-    'Pascal': CodeEditor.Highlighter := SynPasSyn1;
     'Perl': CodeEditor.Highlighter := SynPerlSyn1;
     'XML': CodeEditor.Highlighter := SynXMLSyn1;
     'Diff': CodeEditor.Highlighter := SynDiffSyn1;
     'Bash': CodeEditor.Highlighter := SynUNIXShellScriptSyn1;
     'CSS': CodeEditor.Highlighter := SynCssSyn1;
-    'Tex': CodeEditor.Highlighter := SynTeXSyn1;
     'SQL': CodeEditor.Highlighter := SynSQLSyn1;
     'php': CodeEditor.Highlighter := SynPHPSyn1;
   end;
@@ -168,6 +172,7 @@ begin
       CodeEditor.Lines.LoadFromFile(parts[2]);
       SyntaxChange(parts[0]);
       SnippetName.Text := parts[1];
+      SyntaxBox.Text := parts[0];
     end;
   end;
   findex.Free;
@@ -181,7 +186,6 @@ var
   fname: string;
 begin
   findex := TStringList.Create;
-
   if not FileExists(indexFilename) then
     findex.SaveToFile(indexFilename);
   findex.LoadFromFile(indexFilename);
@@ -216,9 +220,40 @@ begin
   SaveButton.Click;
 end;
 
+procedure TCodeSnippets.Action3Execute(Sender: TObject);
+begin
+  Search.SetFocus;
+end;
+
 procedure TCodeSnippets.CodeEditorChange(Sender: TObject);
 begin
   Status.Caption := ':';
+end;
+
+procedure TCodeSnippets.MenuItem1Click(Sender: TObject);
+var
+  findex: TStringList;
+  i: integer;
+  parts: TStringArray;
+begin
+  findex := TStringList.Create;
+  findex.LoadFromFile(indexFilename);
+  for i := findex.Count - 1 downto 0 do
+  begin
+    parts := findex[i].Split('|');
+    if parts[1] = CodeList.GetSelectedText then
+    begin
+      findex.Delete(i);
+      DeleteFile(parts[2]);
+      findex.SaveToFile(indexFilename);
+      findex.Free;
+      LoadCodeList(indexFilename);
+
+      Status.Caption := 'Deleted...';
+      Exit;
+    end;
+  end;
+  findex.Free;
 end;
 
 procedure TCodeSnippets.ResetButtonClick(Sender: TObject);
@@ -236,7 +271,7 @@ end;
 
 procedure TCodeSnippets.SearchEnter(Sender: TObject);
 begin
-  Search.Text:='';
+  Search.Text := '';
 end;
 
 procedure TCodeSnippets.SearchKeyPress(Sender: TObject; var Key: char);

@@ -1,7 +1,7 @@
 object CodeSnippets: TCodeSnippets
-  Left = 512
+  Left = 680
   Height = 911
-  Top = 221
+  Top = 244
   Width = 1305
   Caption = 'Code Snippets'
   ClientHeight = 911
@@ -27,6 +27,7 @@ object CodeSnippets: TCodeSnippets
       Align = alClient
       ItemHeight = 0
       OnClick = CodeListClick
+      PopupMenu = PopupMenu1
       ScrollWidth = 223
       TabOrder = 0
       TopIndex = -1
@@ -82,20 +83,18 @@ object CodeSnippets: TCodeSnippets
         Top = 8
         Width = 204
         ItemHeight = 0
-        ItemIndex = 0
         Items.Strings = (
+          'Generic/Text'
           'Python'
           'HTML'
           'JavaScript'
           'Java'
           'C++'
-          'Pascal'
           'Perl'
           'XML'
           'Diff'
           'Bash'
           'CSS'
-          'Tex'
           'SQL'
           'php'
         )
@@ -120,7 +119,8 @@ object CodeSnippets: TCodeSnippets
       Width = 1071
       Align = alClient
       BlockIndent = 4
-      Color = clCream
+      Color = clBlack
+      Font.Color = clWhite
       Font.Height = 13
       Font.Name = 'DejaVu Sans Mono'
       Font.Pitch = fpFixed
@@ -132,7 +132,7 @@ object CodeSnippets: TCodeSnippets
       Gutter.MouseActions = <>
       RightGutter.Width = 0
       RightGutter.MouseActions = <>
-      Highlighter = SynPythonSyn1
+      Highlighter = SynSQLSyn1
       Keystrokes = <      
         item
           Command = ecUp
@@ -558,9 +558,15 @@ object CodeSnippets: TCodeSnippets
       MouseTextActions = <>
       MouseSelActions = <>
       Lines.Strings = (
-        'print("hello world")'
+        'SELECT'
+        '  Teachers.id as teacher_id,'
+        '  Students.id as student_id'
+        'FROM Teachers'
+        'FULL OUTER JOIN Students'
+        'ON Teachers.id = Students.teacher_id;'
       )
       VisibleSpecialChars = [vscSpace, vscTabAtLast]
+      ScrollBars = ssAutoVertical
       SelectedColor.BackPriority = 50
       SelectedColor.ForePriority = 50
       SelectedColor.FramePriority = 50
@@ -579,6 +585,7 @@ object CodeSnippets: TCodeSnippets
       MouseLinkColor.Foreground = clBlue
       LineHighlightColor.Background = clNone
       LineHighlightColor.Foreground = clNone
+      TabWidth = 4
       OnChange = CodeEditorChange
       inline SynLeftGutterPartList1: TSynGutterPartList
         object SynGutterMarks1: TSynGutterMarks
@@ -649,87 +656,140 @@ object CodeSnippets: TCodeSnippets
   object SynPythonSyn1: TSynPythonSyn
     DefaultFilter = 'Python Files (*.py)|*.py'
     Enabled = False
-    left = 920
-    top = 16
-  end
-  object SynPasSyn1: TSynPasSyn
-    Enabled = False
-    CompilerMode = pcmDelphi
-    NestedComments = False
-    left = 1057
-    top = 232
+    IdentifierAttri.Foreground = 35327
+    KeyAttri.Foreground = 14597532
+    NonKeyAttri.Foreground = clWhite
+    NumberAttri.Foreground = clYellow
+    HexAttri.Foreground = clYellow
+    FloatAttri.Foreground = clYellow
+    StringAttri.Foreground = clYellow
+    SymbolAttri.Foreground = clCream
+    left = 1152
+    top = 160
   end
   object SynCppSyn1: TSynCppSyn
     DefaultFilter = 'C++ Files (*.c,*.cpp,*.h,*.hpp,*.hh)|*.c;*.cpp;*.h;*.hpp;*.hh'
     Enabled = False
-    left = 511
-    top = 198
+    CommentAttri.Foreground = clGray
+    CommentAttri.FrameColor = clGray
+    DirecAttri.Foreground = clRed
+    IdentifierAttri.Foreground = 10994781
+    InvalidAttri.Foreground = clRed
+    KeyAttri.Foreground = clAqua
+    NumberAttri.Foreground = clLime
+    StringAttri.Foreground = clLime
+    SymbolAttri.Foreground = clLime
+    left = 1152
+    top = 672
   end
   object SynJavaSyn1: TSynJavaSyn
     DefaultFilter = 'Java Files (*.java)|*.java'
     Enabled = False
-    left = 763
-    top = 277
+    AnnotationAttri.Foreground = clGray
+    CommentAttri.Foreground = clGray
+    DocumentAttri.Foreground = clGray
+    IdentifierAttri.Foreground = clYellow
+    InvalidAttri.Foreground = clRed
+    KeyAttri.Foreground = 7388660
+    NumberAttri.Foreground = clLime
+    StringAttri.Foreground = clAqua
+    left = 1152
+    top = 608
   end
   object SynJScriptSyn1: TSynJScriptSyn
     Enabled = False
-    left = 556
-    top = 409
+    BracketAttri.Foreground = clYellow
+    CommentAttri.Foreground = clGray
+    IdentifierAttri.Foreground = 65469
+    KeyAttri.Foreground = clRed
+    EventAttri.Foreground = clLime
+    NumberAttri.Foreground = clLime
+    StringAttri.Foreground = clSilver
+    left = 1152
+    top = 544
   end
   object SynPerlSyn1: TSynPerlSyn
     DefaultFilter = 'Perl Files (*.pl,*.pm,*.cgi)|*.pl;*.pm;*.cgi'
     Enabled = False
-    left = 485
-    top = 339
+    CommentAttri.Foreground = clGray
+    IdentifierAttri.Foreground = clYellow
+    InvalidAttri.Foreground = clRed
+    KeyAttri.Foreground = 10263791
+    left = 1040
+    top = 224
   end
   object SynHTMLSyn1: TSynHTMLSyn
     DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
     Enabled = False
-    left = 718
-    top = 151
+    CommentAttri.Foreground = clMedGray
+    KeyAttri.Foreground = 16743871
+    left = 1152
+    top = 352
   end
   object SynXMLSyn1: TSynXMLSyn
     DefaultFilter = 'XML Document (*.xml,*.xsd,*.xsl,*.xslt,*.dtd)|*.xml;*.xsd;*.xsl;*.xslt;*.dtd'
     Enabled = False
+    ElementAttri.Foreground = clRed
+    AttributeAttri.Foreground = clYellow
+    AttributeValueAttri.Foreground = clMoneyGreen
+    TextAttri.Foreground = clWhite
+    CDATAAttri.Foreground = clYellow
+    EntityRefAttri.Foreground = clYellow
+    ProcessingInstructionAttri.Foreground = clLime
+    DocTypeAttri.Foreground = clRed
+    SymbolAttri.Foreground = clWhite
     WantBracesParsed = False
-    left = 927
-    top = 190
+    left = 1152
+    top = 416
   end
   object SynDiffSyn1: TSynDiffSyn
     Enabled = False
-    left = 956
-    top = 375
+    left = 1152
+    top = 288
   end
   object SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn
     DefaultFilter = 'UNIX Shell Scripts (*.sh)|*.sh'
     Enabled = False
-    left = 724
-    top = 421
+    CommentAttri.Foreground = clGray
+    IdentifierAttri.Foreground = 16055807
+    KeyAttri.Foreground = clYellow
+    NumberAttri.Foreground = clAqua
+    StringAttri.Foreground = clLime
+    VarAttri.Foreground = clAqua
+    left = 1152
+    top = 480
   end
   object SynCssSyn1: TSynCssSyn
     DefaultFilter = 'Cascading Stylesheets (*.css)|*.css'
     Enabled = False
-    left = 372
-    top = 247
+    CommentAttri.Foreground = clGray
+    IdentifierAttri.Foreground = clYellow
+    KeyAttri.Foreground = clLime
+    left = 1040
+    top = 160
   end
   object SynPHPSyn1: TSynPHPSyn
     DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
     Enabled = False
-    left = 358
-    top = 141
+    CommentAttri.Foreground = clGray
+    IdentifierAttri.Foreground = 2211578
+    KeyAttri.Foreground = clRed
+    NumberAttri.Foreground = clYellow
+    StringAttri.Foreground = clWhite
+    left = 1152
+    top = 96
   end
   object SynSQLSyn1: TSynSQLSyn
     DefaultFilter = 'SQL Files (*.sql)|*.sql'
     Enabled = False
+    CommentAttri.Foreground = clGray
+    DataTypeAttri.Foreground = clSkyBlue
+    FunctionAttri.Foreground = clMoneyGreen
+    KeyAttri.Foreground = clRed
+    NumberAttri.Foreground = clMenuHighlight
     SQLDialect = sqlSybase
-    left = 397
-    top = 466
-  end
-  object SynTeXSyn1: TSynTeXSyn
-    DefaultFilter = 'TeX Files (*.tex)|*.tex'
-    Enabled = False
-    left = 459
-    top = 551
+    left = 1040
+    top = 288
   end
   object ActionList1: TActionList
     left = 385
@@ -744,5 +804,30 @@ object CodeSnippets: TCodeSnippets
       OnExecute = Action2Execute
       ShortCut = 16467
     end
+    object Action3: TAction
+      Caption = 'Action3'
+      OnExecute = Action3Execute
+      ShortCut = 16454
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    left = 190
+    top = 361
+    object MenuItem1: TMenuItem
+      Caption = 'Delete Selected'
+      OnClick = MenuItem1Click
+    end
+  end
+  object SynAnySyn1: TSynAnySyn
+    Enabled = False
+    Comments = []
+    DetectPreprocessor = False
+    IdentifierChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
+    Markup = True
+    Entity = False
+    DollarVariables = False
+    ActiveDot = False
+    left = 417
+    top = 244
   end
 end

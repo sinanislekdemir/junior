@@ -28,6 +28,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
@@ -42,6 +43,7 @@ type
 
 var
   Form2: TForm2;
+  indexFilename: string;
 
 implementation
 
@@ -105,8 +107,7 @@ begin
   begin
      CheckListBox1.Items.Add(Edit1.Text);
      Edit1.Text:='';
-     fname := GetUserDir + '/.todo.list';
-     SaveList(fname);
+     SaveList(indexFilename);
   end;
 end;
 
@@ -114,18 +115,21 @@ procedure TForm2.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
   fname: string;
 begin
-  fname := GetUserDir + '/.todo.list';
-  SaveList(fname);
+  SaveList(indexFilename);
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  indexFilename := GetUserDir() + '/.coder-toolbox/todo.txt';
 end;
 
 procedure TForm2.FormShow(Sender: TObject);
 var
   fname: string;
 begin
-  if FileExists(GetUserDir + '/.todo.list') then
+  if FileExists(indexFilename) then
   begin
-     fname := GetUserDir + '/.todo.list';
-     LoadList(fname);
+     LoadList(indexFilename);
   end;
 end;
 
@@ -135,8 +139,7 @@ var
 begin
   CheckListBox1.Items.Add(Edit1.Text);
   Edit1.Text:= '';
-  fname := GetUserDir + '/.todo.list';
-  SaveList(fname);
+  SaveList(indexFilename);
 end;
 
 procedure TForm2.MenuItem3Click(Sender: TObject);

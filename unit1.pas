@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, SynHighlighterDiff, Math, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, ExtCtrls, Unit2, Unit3;
+  Dialogs, StdCtrls, ExtCtrls, Unit2, Unit3, fphttpclient;
 
 type
 
@@ -16,6 +16,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    CheckBox1: TCheckBox;
     minutes: TEdit;
     GroupBox1: TGroupBox;
     Label1: TLabel;
@@ -23,6 +24,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure CheckBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDblClick(Sender: TObject);
     procedure minutesChange(Sender: TObject);
@@ -48,6 +51,19 @@ begin
   CodeSnippets.Show();
 end;
 
+procedure TMainForm.Button4Click(Sender: TObject);
+begin
+
+end;
+
+procedure TMainForm.CheckBox1Change(Sender: TObject);
+begin
+  if CheckBox1.Checked then
+    FormStyle := fsSystemStayOnTop
+  else
+    FormStyle := fsNormal;
+end;
+
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   seconds := 60 * 25;
@@ -62,7 +78,8 @@ procedure TMainForm.minutesChange(Sender: TObject);
 var
   s_minutes, s_seconds: string;
 begin
-  if minutes.Text = '' then exit;
+  if minutes.Text = '' then
+    exit;
   seconds := 60 * StrToInt(minutes.Text);
   s_minutes := IntToStr(floor(seconds / 60));
   s_seconds := IntToStr(seconds mod 60);
@@ -111,4 +128,3 @@ begin
 end;
 
 end.
-

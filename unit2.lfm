@@ -8,6 +8,7 @@ object Form2: TForm2
   ClientWidth = 723
   Menu = MainMenu1
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   Position = poWorkAreaCenter
   LCLVersion = '1.8.2.0'
