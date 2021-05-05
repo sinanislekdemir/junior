@@ -1,7 +1,7 @@
 object CodeSnippets: TCodeSnippets
-  Left = 680
+  Left = 529
   Height = 911
-  Top = 244
+  Top = 387
   Width = 1305
   Caption = 'Code Snippets'
   ClientHeight = 911
@@ -9,7 +9,7 @@ object CodeSnippets: TCodeSnippets
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poWorkAreaCenter
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 911
@@ -21,8 +21,8 @@ object CodeSnippets: TCodeSnippets
     TabOrder = 0
     object CodeList: TListBox
       Left = 1
-      Height = 870
-      Top = 40
+      Height = 876
+      Top = 34
       Width = 225
       Align = alClient
       ItemHeight = 0
@@ -34,7 +34,7 @@ object CodeSnippets: TCodeSnippets
     end
     object Search: TEdit
       Left = 1
-      Height = 39
+      Height = 33
       Top = 1
       Width = 225
       Align = alTop
@@ -71,7 +71,7 @@ object CodeSnippets: TCodeSnippets
       TabOrder = 0
       object SnippetName: TEdit
         Left = 10
-        Height = 39
+        Height = 33
         Top = 8
         Width = 430
         TabOrder = 0
@@ -79,10 +79,11 @@ object CodeSnippets: TCodeSnippets
       end
       object SyntaxBox: TComboBox
         Left = 448
-        Height = 35
+        Height = 33
         Top = 8
         Width = 204
         ItemHeight = 0
+        ItemIndex = 1
         Items.Strings = (
           'Generic/Text'
           'Python'
@@ -645,9 +646,9 @@ object CodeSnippets: TCodeSnippets
       end
       object Status: TLabel
         Left = 13
-        Height = 19
+        Height = 15
         Top = 12
-        Width = 4
+        Width = 3
         Caption = ':'
         ParentColor = False
       end
@@ -664,8 +665,8 @@ object CodeSnippets: TCodeSnippets
     FloatAttri.Foreground = clYellow
     StringAttri.Foreground = clYellow
     SymbolAttri.Foreground = clCream
-    left = 1152
-    top = 160
+    Left = 1152
+    Top = 160
   end
   object SynCppSyn1: TSynCppSyn
     DefaultFilter = 'C++ Files (*.c,*.cpp,*.h,*.hpp,*.hh)|*.c;*.cpp;*.h;*.hpp;*.hh'
@@ -679,8 +680,8 @@ object CodeSnippets: TCodeSnippets
     NumberAttri.Foreground = clLime
     StringAttri.Foreground = clLime
     SymbolAttri.Foreground = clLime
-    left = 1152
-    top = 672
+    Left = 1152
+    Top = 672
   end
   object SynJavaSyn1: TSynJavaSyn
     DefaultFilter = 'Java Files (*.java)|*.java'
@@ -693,8 +694,8 @@ object CodeSnippets: TCodeSnippets
     KeyAttri.Foreground = 7388660
     NumberAttri.Foreground = clLime
     StringAttri.Foreground = clAqua
-    left = 1152
-    top = 608
+    Left = 1152
+    Top = 608
   end
   object SynJScriptSyn1: TSynJScriptSyn
     Enabled = False
@@ -705,8 +706,8 @@ object CodeSnippets: TCodeSnippets
     EventAttri.Foreground = clLime
     NumberAttri.Foreground = clLime
     StringAttri.Foreground = clSilver
-    left = 1152
-    top = 544
+    Left = 1152
+    Top = 544
   end
   object SynPerlSyn1: TSynPerlSyn
     DefaultFilter = 'Perl Files (*.pl,*.pm,*.cgi)|*.pl;*.pm;*.cgi'
@@ -715,16 +716,16 @@ object CodeSnippets: TCodeSnippets
     IdentifierAttri.Foreground = clYellow
     InvalidAttri.Foreground = clRed
     KeyAttri.Foreground = 10263791
-    left = 1040
-    top = 224
+    Left = 1040
+    Top = 224
   end
   object SynHTMLSyn1: TSynHTMLSyn
     DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
     Enabled = False
     CommentAttri.Foreground = clMedGray
     KeyAttri.Foreground = 16743871
-    left = 1152
-    top = 352
+    Left = 1152
+    Top = 352
   end
   object SynXMLSyn1: TSynXMLSyn
     DefaultFilter = 'XML Document (*.xml,*.xsd,*.xsl,*.xslt,*.dtd)|*.xml;*.xsd;*.xsl;*.xslt;*.dtd'
@@ -739,13 +740,13 @@ object CodeSnippets: TCodeSnippets
     DocTypeAttri.Foreground = clRed
     SymbolAttri.Foreground = clWhite
     WantBracesParsed = False
-    left = 1152
-    top = 416
+    Left = 1152
+    Top = 416
   end
   object SynDiffSyn1: TSynDiffSyn
     Enabled = False
-    left = 1152
-    top = 288
+    Left = 1152
+    Top = 288
   end
   object SynUNIXShellScriptSyn1: TSynUNIXShellScriptSyn
     DefaultFilter = 'UNIX Shell Scripts (*.sh)|*.sh'
@@ -756,8 +757,8 @@ object CodeSnippets: TCodeSnippets
     NumberAttri.Foreground = clAqua
     StringAttri.Foreground = clLime
     VarAttri.Foreground = clAqua
-    left = 1152
-    top = 480
+    Left = 1152
+    Top = 480
   end
   object SynCssSyn1: TSynCssSyn
     DefaultFilter = 'Cascading Stylesheets (*.css)|*.css'
@@ -765,8 +766,8 @@ object CodeSnippets: TCodeSnippets
     CommentAttri.Foreground = clGray
     IdentifierAttri.Foreground = clYellow
     KeyAttri.Foreground = clLime
-    left = 1040
-    top = 160
+    Left = 1040
+    Top = 160
   end
   object SynPHPSyn1: TSynPHPSyn
     DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
@@ -776,8 +777,8 @@ object CodeSnippets: TCodeSnippets
     KeyAttri.Foreground = clRed
     NumberAttri.Foreground = clYellow
     StringAttri.Foreground = clWhite
-    left = 1152
-    top = 96
+    Left = 1152
+    Top = 96
   end
   object SynSQLSyn1: TSynSQLSyn
     DefaultFilter = 'SQL Files (*.sql)|*.sql'
@@ -788,12 +789,12 @@ object CodeSnippets: TCodeSnippets
     KeyAttri.Foreground = clRed
     NumberAttri.Foreground = clMenuHighlight
     SQLDialect = sqlSybase
-    left = 1040
-    top = 288
+    Left = 1040
+    Top = 288
   end
   object ActionList1: TActionList
-    left = 385
-    top = 385
+    Left = 385
+    Top = 385
     object Action1: TAction
       Caption = 'Action1'
       OnExecute = Action1Execute
@@ -811,8 +812,8 @@ object CodeSnippets: TCodeSnippets
     end
   end
   object PopupMenu1: TPopupMenu
-    left = 190
-    top = 361
+    Left = 190
+    Top = 361
     object MenuItem1: TMenuItem
       Caption = 'Delete Selected'
       OnClick = MenuItem1Click
@@ -827,7 +828,7 @@ object CodeSnippets: TCodeSnippets
     Entity = False
     DollarVariables = False
     ActiveDot = False
-    left = 417
-    top = 244
+    Left = 417
+    Top = 244
   end
 end

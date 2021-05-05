@@ -204,9 +204,7 @@ begin
   CodeEditor.Lines.SaveToFile(fname);
   findex.SaveToFile(indexFilename);
   findex.Free;
-  LoadCodeList(fname);
-  fname := indexFilename;
-  LoadCodeList(fname);
+  LoadCodeList(indexFilename);
   Status.Caption := 'Saved...';
 end;
 
