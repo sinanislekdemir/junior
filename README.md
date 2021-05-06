@@ -24,8 +24,7 @@ You can find the pre-built binaries in the release page. If you want to build it
 Well. Why not? It took me just 15 minutes to do this :D No one will give me a cool badge if I had used C++ or Rust :D 
 
 Lazarus / Freepascal compiles statically and nicely on MacOS, Windows and Linux as well as Android. So why bother?
-
-![Screenshot from 2021-05-05 22-52-12](https://user-images.githubusercontent.com/1842484/117200849-9fd39080-adf4-11eb-8b19-81d9f3f2fa2e.png)
+![Screenshot from 2021-05-07 00-12-42](https://user-images.githubusercontent.com/1842484/117366799-f6f76500-aec9-11eb-944b-f2d12b50afdf.png)
 
 ## Help wanted
 
