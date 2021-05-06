@@ -10,6 +10,13 @@ Currently includes:
 * Todo list
 * Code snippets
 
+## Installing
+
+You can find the pre-built binaries in: https://github.com/sinanislekdemir/junior/releases/tag/v0.0.1b
+
+Currently built for Linux and Windows. If you have a Mac, I would appreciate you to build the binary. It should just build without code changes.
+
+
 You can find the pre-built binaries in the release page. If you want to build it for yourself, you'll need Lazarus. So, go checkout [https://www.lazarus-ide.org/](https://www.lazarus-ide.org/).
 
 ## Why Lazarus?
