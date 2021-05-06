@@ -1,0 +1,132 @@
+object Form1: TForm1
+  Left = 597
+  Height = 788
+  Top = 513
+  Width = 1029
+  Caption = 'Daily Scrum'
+  ClientHeight = 788
+  ClientWidth = 1029
+  OnCreate = FormCreate
+  LCLVersion = '2.0.10.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 40
+    Top = 0
+    Width = 1029
+    Align = alTop
+    ClientHeight = 40
+    ClientWidth = 1029
+    TabOrder = 0
+    object scrumdate: TDateTimePicker
+      Left = 88
+      Height = 23
+      Top = 8
+      Width = 89
+      CenturyFrom = 1941
+      DateDisplayOrder = ddoYMD
+      MaxDate = 2958465
+      MinDate = -53780
+      TabOrder = 0
+      DateSeparator = '-'
+      TrailingSeparator = False
+      TextForNullDate = 'NULL'
+      LeadingZeros = True
+      Kind = dtkDate
+      TimeSeparator = ':'
+      TimeFormat = tf24
+      TimeDisplay = tdHMS
+      DateMode = dmComboBox
+      Date = 44322
+      Time = 0.926979525465867
+      UseDefaultSeparators = False
+      HideDateTimeParts = []
+      MonthNames = 'Long'
+      OnChange = scrumdateChange
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 15
+      Top = 11
+      Width = 68
+      Caption = 'Scrum Date'
+      ParentColor = False
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 5
+    Height = 152
+    Top = 45
+    Width = 1019
+    Align = alTop
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    BorderSpacing.InnerBorder = 5
+    Caption = 'Notes about yesterday'
+    ClientHeight = 134
+    ClientWidth = 1017
+    TabOrder = 1
+    object yesterday: TMemo
+      Left = 10
+      Height = 114
+      Top = 10
+      Width = 997
+      Align = alClient
+      BorderSpacing.Around = 10
+      Lines.Strings = (
+        'What have I done yesterday?'
+      )
+      OnExit = yesterdayExit
+      ScrollBars = ssAutoBoth
+      TabOrder = 0
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 403
+    Top = 197
+    Width = 1029
+    Align = alClient
+    Caption = 'Notes about today'
+    ClientHeight = 385
+    ClientWidth = 1027
+    TabOrder = 2
+    object today: TMemo
+      Left = 10
+      Height = 365
+      Top = 10
+      Width = 1007
+      Align = alClient
+      BorderSpacing.Around = 10
+      Lines.Strings = (
+        'What will I work on today?'
+      )
+      OnExit = todayExit
+      TabOrder = 0
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 0
+    Height = 188
+    Top = 600
+    Width = 1029
+    Align = alBottom
+    Caption = 'Notes about blockers'
+    ClientHeight = 170
+    ClientWidth = 1027
+    TabOrder = 3
+    object blockers: TMemo
+      Left = 10
+      Height = 150
+      Top = 10
+      Width = 1007
+      Align = alClient
+      BorderSpacing.Around = 10
+      Lines.Strings = (
+        'Does anything block me?'
+      )
+      OnExit = blockersExit
+      TabOrder = 0
+    end
+  end
+end
