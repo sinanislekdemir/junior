@@ -12,7 +12,7 @@ Currently includes:
 
 ## Installing
 
-You can find the pre-built binaries in: https://github.com/sinanislekdemir/junior/releases/tag/v0.0.1b
+You can find the pre-built binaries in: https://github.com/sinanislekdemir/junior/releases/tag/v0.0.1
 
 Currently built for Linux and Windows. If you have a Mac, I would appreciate you to build the binary. It should just build without code changes.
 
