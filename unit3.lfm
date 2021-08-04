@@ -1,7 +1,7 @@
 object CodeSnippets: TCodeSnippets
-  Left = 529
+  Left = 174
   Height = 911
-  Top = 387
+  Top = 409
   Width = 1305
   Caption = 'Code Snippets'
   ClientHeight = 911
@@ -66,6 +66,7 @@ object CodeSnippets: TCodeSnippets
       Top = 1
       Width = 1071
       Align = alTop
+      BevelOuter = bvNone
       ClientHeight = 58
       ClientWidth = 1071
       TabOrder = 0
@@ -74,6 +75,7 @@ object CodeSnippets: TCodeSnippets
         Height = 33
         Top = 8
         Width = 430
+        OnEnter = SnippetNameEnter
         TabOrder = 0
         Text = 'Snippet Name'
       end
@@ -128,12 +130,13 @@ object CodeSnippets: TCodeSnippets
       Font.Quality = fqNonAntialiased
       ParentColor = False
       ParentFont = False
+      PopupMenu = PopupMenu2
       TabOrder = 1
       Gutter.Width = 57
       Gutter.MouseActions = <>
       RightGutter.Width = 0
       RightGutter.MouseActions = <>
-      Highlighter = SynSQLSyn1
+      Highlighter = SynPythonSyn1
       Keystrokes = <      
         item
           Command = ecUp
@@ -558,14 +561,8 @@ object CodeSnippets: TCodeSnippets
       MouseActions = <>
       MouseTextActions = <>
       MouseSelActions = <>
-      Lines.Strings = (
-        'SELECT'
-        '  Teachers.id as teacher_id,'
-        '  Students.id as student_id'
-        'FROM Teachers'
-        'FULL OUTER JOIN Students'
-        'ON Teachers.id = Students.teacher_id;'
-      )
+      Options = [eoAutoIndent, eoBracketHighlight, eoEnhanceHomeKey, eoGroupUndo, eoHideRightMargin, eoKeepCaretX, eoScrollPastEof, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces, eoDoubleClickSelectsLine]
+      MouseOptions = [emDoubleClickSelectsLine]
       VisibleSpecialChars = [vscSpace, vscTabAtLast]
       ScrollBars = ssAutoVertical
       SelectedColor.BackPriority = 50
@@ -586,6 +583,7 @@ object CodeSnippets: TCodeSnippets
       MouseLinkColor.Foreground = clBlue
       LineHighlightColor.Background = clNone
       LineHighlightColor.Foreground = clNone
+      SelectionMode = smColumn
       TabWidth = 4
       OnChange = CodeEditorChange
       inline SynLeftGutterPartList1: TSynGutterPartList
@@ -830,5 +828,21 @@ object CodeSnippets: TCodeSnippets
     ActiveDot = False
     Left = 417
     Top = 244
+  end
+  object PopupMenu2: TPopupMenu
+    Left = 545
+    Top = 194
+    object MenuItem2: TMenuItem
+      Caption = 'Copy'
+      OnClick = MenuItem2Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Cut'
+      OnClick = MenuItem3Click
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Paste'
+      OnClick = MenuItem4Click
+    end
   end
 end

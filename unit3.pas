@@ -23,7 +23,11 @@ type
     Action3: TAction;
     ActionList1: TActionList;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
     PopupMenu1: TPopupMenu;
+    PopupMenu2: TPopupMenu;
     Status: TLabel;
     SaveButton: TButton;
     ResetButton: TButton;
@@ -55,6 +59,9 @@ type
     procedure Action3Execute(Sender: TObject);
     procedure CodeEditorChange(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
     procedure ResetButtonClick(Sender: TObject);
     procedure CodeListClick(Sender: TObject);
@@ -62,6 +69,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure SearchEnter(Sender: TObject);
     procedure SearchKeyPress(Sender: TObject; var Key: char);
+    procedure SnippetNameEnter(Sender: TObject);
     procedure SyntaxBoxChange(Sender: TObject);
     procedure RefreshCodeList();
     procedure LoadCodeList(var filename: string);
@@ -254,6 +262,21 @@ begin
   findex.Free;
 end;
 
+procedure TCodeSnippets.MenuItem2Click(Sender: TObject);
+begin
+  CodeEditor.CopyToClipboard;
+end;
+
+procedure TCodeSnippets.MenuItem3Click(Sender: TObject);
+begin
+  CodeEditor.CutToClipboard;
+end;
+
+procedure TCodeSnippets.MenuItem4Click(Sender: TObject);
+begin
+  CodeEditor.PasteFromClipboard;
+end;
+
 procedure TCodeSnippets.ResetButtonClick(Sender: TObject);
 begin
   SnippetName.Text := '';
@@ -287,6 +310,14 @@ begin
     begin
       CodeList.Items.Delete(i);
     end;
+  end;
+end;
+
+procedure TCodeSnippets.SnippetNameEnter(Sender: TObject);
+begin
+  if SnippetName.Text = 'Snippet Name' then
+  begin
+    SnippetName.Text:='';
   end;
 end;
 

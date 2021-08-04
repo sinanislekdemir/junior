@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, SynHighlighterDiff, Math, Forms, Controls,
   Graphics, Dialogs, StdCtrls, ExtCtrls, Menus, ComCtrls, Unit2, Unit3, unit4,
-  fphttpclient;
+  SQLite3Conn, SQLDB, fphttpclient;
 
 type
 
